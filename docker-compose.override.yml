@@ -8,6 +8,11 @@ services:
             - ${WEBAPP_STORAGE_HOME}/site:/data/db
         ports:
             - "27017:27017"
+    redisdb:
+        container_name: redisdb
+        restart: always
+        ports:
+            - "6379:6379"
     catalog.api:
         environment:
             - ASPNETCORE_ENVIRONMENT=Development
@@ -19,3 +24,14 @@ services:
             - ${HOME}/.aspnet/https:/root/.aspnet/https
         ports:
             - "8000:80"
+    basket.api:
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+            - "ConnectionStrings:Redis=redisdb:6379"
+        depends_on:
+            - redisdb
+        volumes:
+            - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+            - ${HOME}/.aspnet/https:/root/.aspnet/https
+        ports:
+            - "8001:80"
