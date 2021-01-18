@@ -14,7 +14,6 @@ namespace Ordering.Infrastructure.Repositories.Base
     {
         public OrderRepository(OrderContex dbContex) : base(dbContex)
         {
-
         }
 
         public async Task<IEnumerable<Order>> GetOrdersByUserName(string userName)
