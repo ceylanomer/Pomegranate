@@ -12,8 +12,8 @@ using Ordering.Application.Responses;
 
 namespace Ordering.API.Controllers
 {
-    [ApiController]
     [Route("[controller]")]
+    [ApiController]
     public class OrderController : ControllerBase
     {
         private readonly IMediator _mediator;
